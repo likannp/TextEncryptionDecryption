@@ -8,6 +8,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const noMessage = document.getElementById('no-message');
     const instructionMessage = document.getElementById('instruction-message');
 
+    inputText.value = '';
+
+    inputText.addEventListener('focus', () => {
+        inputText.value = '';
+    });
+
     function encryptSubstitution(text) {
         const substitutions = {
             'a': 'ai',
