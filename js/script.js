@@ -4,6 +4,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const encryptButton = document.getElementById('encrypt-button');
     const decryptButton = document.getElementById('decrypt-button');
     const copyButton = document.getElementById('copy-button');
+    const placeholderImage = document.getElementById('placeholder-image');
+    const noMessage = document.getElementById('no-message');
+    const instructionMessage = document.getElementById('instruction-message');
 
     function encryptSubstitution(text) {
         const substitutions = {
@@ -47,17 +50,28 @@ document.addEventListener('DOMContentLoaded', () => {
         return decryptedText;
     }
 
+    function showOutput() {
+        placeholderImage.style.display = 'none';
+        noMessage.style.display = 'none';
+        instructionMessage.style.display = 'none';
+        outputText.style.display = 'block';
+        copyButton.style.display = 'block';
+    }
+
     encryptButton.addEventListener('click', () => {
         const text = inputText.value;
         const finalEncryptedText = encryptSubstitution(text);
         outputText.value = finalEncryptedText;
+        showOutput();
     });
 
     decryptButton.addEventListener('click', () => {
         const text = inputText.value;
         const finalDecryptedText = decryptSubstitution(text);
         outputText.value = finalDecryptedText;
+        showOutput();
     });
+
     copyButton.addEventListener('click', () => {
         const text = outputText.value;
 

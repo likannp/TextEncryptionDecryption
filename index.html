@@ -13,19 +13,24 @@
 </head>
 <body>
     <header>
-        <img src="assets/Frame 6.png" alt="Logo" id="logo">    </header>
+        <img src="assets/Frame 6.png" alt="Logo" id="logo">
+    </header>
     <main>
         <section id="encryption-section">
-            <textarea id="input-text" placeholder="Digite seu texto..." rows="10" cols="50" onfocus="this.value=''"></textarea>
+            <textarea id="input-text" placeholder="Digite seu texto" rows="10" cols="50" onfocus="this.value=''"></textarea>
             <br>
-            <button id="encrypt-button">Encrypt</button>
-            <button id="decrypt-button">Decrypt</button>
+            <p>Apenas letras minúsculas e sem acento.</p>
+            <button id="encrypt-button" class="rounded-button">Criptografar</button>
+            <button id="decrypt-button" class="rounded-button">Descriptografar</button>
             <br>
         </section>
         <section id="result-section">
-            <textarea id="output-text" placeholder="Resultado" rows="10" cols="50" readonly></textarea>
+            <img src="assets/High quality products.svg" alt="Placeholder Image" id="placeholder-image">
             <br>
-            <button id="copy-button">Copiar</button>
+            <strong id="no-message">Nenhuma mensagem encontrada</strong>
+            <p id="instruction-message">Digite um texto que você deseja criptografar ou descriptografar.</p>
+            <textarea id="output-text" placeholder="Resultado" rows="10" cols="50" readonly style="display: none;"></textarea>
+            <button id="copy-button" class="rounded-button" style="display: none;">Copiar</button>
         </section>
     </main>
     <script src="js/script.js"></script>
