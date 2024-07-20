@@ -1,4 +1,9 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
 body {
+    height: 100vh;
     font-family: "Inter", sans-serif;
     margin: 0;
     padding: 0;
@@ -15,31 +20,32 @@ header {
 }
 
 header img#logo {
-    margin: 2%;
+    margin: 1%;
     width: 90px;
     height: auto;
 }
 
 main {
-    width: 80%;
+    width: 85%;
+    height: 53%;
+    padding: 5%;
     display: flex;
     justify-content: space-between;
-    padding: 4%;
     border-radius: 8px;
-    margin: 20px 0px;
 }
 #encryption-section{
-    width: 45%;
-    padding: 10px;
+    width: 100%;
     text-align: center;
 }
 
 #result-section {
-    width: 30%;
-    padding: 2%;
-    border-radius: 9%;
+    border-radius: 15%;
     background-color: #fff;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    height: 86%;
+    width: 30%;
+    margin: 0;
+    padding: 5%;
     text-align: center;
 }
 
@@ -54,7 +60,8 @@ textarea {
     outline: none;
 }
 p{
-  font-size: 75%;
+    margin: 3%;
+    font-size: 80%;
 }
 button{
     margin-right: 1%;
@@ -76,6 +83,6 @@ button{
 #placeholder-image {
     max-width: 100%;
     height: auto;
-    margin-top: 3%;
-    margin-bottom: 3%;
+    /* margin-top: 3%; */
+    /* margin-bottom: 3%; */
 }
