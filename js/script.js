@@ -8,26 +8,26 @@ document.addEventListener('DOMContentLoaded', () => {
     const noMessage = document.getElementById('no-message');
     const instructionMessage = document.getElementById('instruction-message');
 
-    inputText.value = '';
+    const ENCRYPT_SUBSTITUTIONS = {
+        'a': 'ai',
+        'e': 'enter',
+        'i': 'imes',
+        'o': 'ober',
+        'u': 'ufat'
+    };
 
-    inputText.addEventListener('focus', () => {
-        inputText.value = '';
-    });
+    const DECRYPT_SUBSTITUTIONS = {
+        'ai': 'a',
+        'enter': 'e',
+        'imes': 'i',
+        'ober': 'o',
+        'ufat': 'u'
+    };
 
     function encryptSubstitution(text) {
-        const substitutions = {
-            'a': 'ai',
-            'e': 'enter',
-            'i': 'imes',
-            'o': 'ober',
-            'u': 'ufat'
-        };
-
         let encryptedText = text;
 
-        const sortedSubstitutions = Object.entries(substitutions).sort((a, b) => b[1].length - a[1].length);
-
-        for (const [key, value] of sortedSubstitutions) {
+        for (const [key, value] of Object.entries(ENCRYPT_SUBSTITUTIONS)) {
             const regex = new RegExp(key, 'g');
             encryptedText = encryptedText.replace(regex, value);
         }
@@ -36,21 +36,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function decryptSubstitution(text) {
-        const substitutions = {
-            'ai': 'a',
-            'enter': 'e',
-            'imes': 'i',
-            'ober': 'o',
-            'ufat': 'u'
-        };
-
         let decryptedText = text;
 
-        const sortedSubstitutions = Object.entries(substitutions).sort((a, b) => b[0].length - a[0].length);
+        const sortedKeys = Object.keys(DECRYPT_SUBSTITUTIONS).sort((a, b) => b.length - a.length);
 
-        for (const [key, value] of sortedSubstitutions) {
+        for (const key of sortedKeys) {
             const regex = new RegExp(key, 'g');
-            decryptedText = decryptedText.replace(regex, value);
+            decryptedText = decryptedText.replace(regex, DECRYPT_SUBSTITUTIONS[key]);
         }
 
         return decryptedText;
@@ -64,27 +56,40 @@ document.addEventListener('DOMContentLoaded', () => {
         copyButton.style.display = 'block';
     }
 
-    encryptButton.addEventListener('click', () => {
-        const text = inputText.value;
-        const finalEncryptedText = encryptSubstitution(text);
-        outputText.value = finalEncryptedText;
+    function handleTextOperation(operation) {
+        const text = inputText.value.trim();
+
+        if (text === '') {
+            alert('Por favor, insira um texto para criptografar ou descriptografar.');
+            return;
+        }
+
+        const finalText = operation(text);
+        outputText.value = finalText;
         showOutput();
+    }
+
+    encryptButton.addEventListener('click', () => {
+        handleTextOperation(encryptSubstitution);
+        encryptButton.style.backgroundColor = '#0056b3';
+        encryptButton.style.color = '#fff';
     });
 
     decryptButton.addEventListener('click', () => {
-        const text = inputText.value;
-        const finalDecryptedText = decryptSubstitution(text);
-        outputText.value = finalDecryptedText;
-        showOutput();
+        handleTextOperation(decryptSubstitution);
+        decryptButton.style.backgroundColor = '#0056b3';
+        decryptButton.style.color = '#fff';
     });
 
     copyButton.addEventListener('click', () => {
         const text = outputText.value;
 
         navigator.clipboard.writeText(text).then(() => {
+            copyButton.style.color = '#fff';
             alert('Texto copiado para a área de transferência!');
         }).catch(err => {
             console.error('Erro ao copiar texto: ', err);
+            alert('Erro ao copiar texto. Tente novamente.');
         });
     });
 });
