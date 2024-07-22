@@ -71,14 +71,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     encryptButton.addEventListener('click', () => {
         handleTextOperation(encryptSubstitution);
-        encryptButton.style.backgroundColor = '#0056b3';
         encryptButton.style.color = '#fff';
     });
 
     decryptButton.addEventListener('click', () => {
         handleTextOperation(decryptSubstitution);
-        decryptButton.style.backgroundColor = '#0056b3';
-        decryptButton.style.color = '#fff';
     });
 
     copyButton.addEventListener('click', () => {
